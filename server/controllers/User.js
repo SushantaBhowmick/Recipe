@@ -6,7 +6,6 @@ import { UserModel } from "../models/userModel.js";
 
 export const register = async (req, res) => {
     const { username, password } = req.body;
-    console.log(username,password);
 
     const user = await UserModel.findOne({username})
     if(user){
@@ -15,8 +14,9 @@ export const register = async (req, res) => {
     const hashPassword = await bcrypt.hash(password,10);
     const newUser = new UserModel({username,password:hashPassword});
     await newUser.save();
-    res.json({
-        message:"User Registerd successfully!",
+   
+    res.status(201).json({
+       message: "user register successfully!"
     });
 
 }
@@ -31,8 +31,10 @@ export const login = async (req, res) => {
     if(!isPassword){
         return res.json({message:"Username or Password is Incorrect"});
     }
-    const token = jwt.sign({id:user._id},process.env.JWT_SECRET);
-    res.json({
+    const token = jwt.sign({id:user._id},process.env.JWT_SECRET,{
+       expiresIn: 2* 24 *60*60*1000
+    });
+    res.status(200).json({
         token,
         userID:user._id
     })

@@ -25,7 +25,7 @@ const AllUSer = () => {
       }, [])
 
   return (
-    <div>
+    <div className='use'>
         <table className="table">
   <thead>
     <tr>
