@@ -38,3 +38,23 @@ export const login = async (req, res) => {
     })
 
 }
+
+//get all user
+export const getAllUser = async(req,res)=>{
+   try {
+    const users = await UserModel.find({});
+    res.status(200).json(users)
+   } catch (error) {
+    res.json(error)
+   }
+}
+
+//get single user
+export const getAUser = async(req,res)=>{
+   try {
+    const user = await UserModel.findById(req.params.id);
+    res.status(200).json(user)
+   } catch (error) {
+    res.json(error)
+   }
+}

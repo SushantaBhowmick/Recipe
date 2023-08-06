@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import {Provider as AlertProvider, transitions,positions} from "react-alert"
 import AlertTemplate from "react-alert-template-basic"
 import App from './App';
+import 'bootstrap/dist/css/bootstrap-grid.min.css'
+
 
 const options={
   position: positions.BOTTOM_CENTER,

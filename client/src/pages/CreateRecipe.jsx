@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useAlert } from "react-alert";
 
-const CreateRecipe = () => {
+const CreateRecipe = ({isAuthenticated} ) => {
 
   const userID = useGetUserID();
   const [cookies, _] = useCookies(["access_token"]);
@@ -41,18 +41,22 @@ const CreateRecipe = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post(
-        "http://localhost:8080/api/v1/recipes/create",
-        { ...recipe },
-        {
-          headers: { authorization: cookies.access_token },
-        }
-      );
+      if(cookies && cookies.access_token){
+        await axios.post(
+          "http://localhost:8080/api/v1/recipes/create",
+          { ...recipe },
+          {
+            headers: { authorization: cookies.access_token },
+          }
+        ) 
+        alert.success("Recipe Created");
+        navigate("/");
+      }else{
+      alert.error("Please Login to Access this recource");
+      }
 
-      alert.success("Recipe Created");
-      navigate("/");
     } catch (error) {
-      console.error(error);
+      alert.error("Please Login to Access this recource");
     }
   };
 
@@ -66,6 +70,7 @@ const CreateRecipe = () => {
         type="text"
         id="name"
         name="name"
+        required
         value={recipe.name}
         onChange={handleChange}
       />
@@ -95,6 +100,7 @@ const CreateRecipe = () => {
         type="text"
         id="imageUrl"
         name="imageUrl"
+        required
         value={recipe.imageUrl}
         onChange={handleChange}
       />
@@ -102,6 +108,7 @@ const CreateRecipe = () => {
       <input
         type="number"
         id="cookingTime"
+        required
         name="cookingTime"
         value={recipe.cookingTime}
         onChange={handleChange}

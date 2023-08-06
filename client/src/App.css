@@ -63,6 +63,23 @@ input {
   color: white;
   text-decoration: none;
 }
+.action{
+  text-decoration: none;
+  color: black;
+}
+
+.action>a:first-child{
+  text-decoration: none;
+  color: rgb(64, 60, 111);
+}
+.action>a{
+  text-decoration: none;
+  color: red;
+}
+.btn{
+  display: flex;
+  justify-content: space-between;
+}
 
 a {
   color: white;
