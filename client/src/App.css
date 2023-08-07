@@ -18,8 +18,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f2f2f2;
+  min-height: 85vh;
+  width: 35vw;
+}
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  width: 35vw;
 }
 
 .auth-container {
@@ -27,12 +34,22 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 70px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  margin: 20px;
-  width: 400px;
+  width: 100%;
+}
+
+.reg-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 70px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
@@ -155,8 +172,13 @@ button{
 }
 button:hover{
   background-color: rgb(178, 54, 33);
+  cursor: pointer;
 }
+h1{
+  text-align: center;
+  font-family: cursive;
 
+}
 .updateUser > form{
   display: flex;
   flex-direction: column;
@@ -174,4 +196,79 @@ button:hover{
   text-align: center;
   font-family: cursive;
   padding: 10px;
+}
+.log{
+  display: flex;
+  justify-content: space-between;
+}
+.reg{
+  display: flex;
+  justify-content: space-between;
+}
+.log >a{
+  color: black;
+  font-size: small;
+}
+.reg >a{
+  color: black;
+  font-size: small;
+}
+
+
+@media screen and (max-width:600px){
+ 
+ 
+  h2{
+    font-size: 1.5rem;
+  }
+  .navbar a{
+    font-size: 0.8rem;
+  }
+  input{
+    padding: 5px;
+  }
+  button{
+    font-size: 0.8rem;
+    padding: 4px 17px;
+  }
+ h1{
+    font-size: 1.5rem;
+  }
+  .home-header >h2{
+    font-size: 1rem;
+  }
+  .home > button{
+    color: black;
+  }
+  
+ .auth-container{
+  padding: 30px;
+ }
+ .reg-container{
+  padding: 30px;
+ }
+ .auth{
+  min-height: 70vh;
+ }
+ .register{
+  min-height: 70vh;
+ }
+ .use{
+  min-width: 100vw;
+  overflow: hidden;
+ }
+ .table{
+  font-size: small;
+ }
+ .navbar{
+min-width: 100vw;
+ }
+ .MuiSvgIcon-root{
+  font-size: 0.8rem !important; 
+  
+ }
+ use >span{
+  font-size: 1rem;
+ }
+
 }

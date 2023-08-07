@@ -86,13 +86,13 @@ const Home = () => {
   const isRecipeSaved = (id) => savedRecipes.includes(id);
 
   return (
-    <div>
+    <div className="home">
       
       <h1>Recipes</h1>
       <ul>
         {recipes.map((recipe) => (
           <li key={recipe._id}>
-            <div>
+            <div className="home-header">
               <h2>{recipe.name}</h2>
               <div className="btn">
                 <button

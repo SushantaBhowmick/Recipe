@@ -2,7 +2,9 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useAlert } from 'react-alert';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+
 
 const Login = () => {
     const [_, setCookies] = useCookies(["access_token"]);
@@ -32,7 +34,8 @@ const Login = () => {
     };
 
   return (
-    <div className="auth-container">
+    <div className="login">
+      <div className="auth-container">
     <form onSubmit={handleSubmit}>
       <h2>Login</h2>
       <div className="form-group">
@@ -40,6 +43,7 @@ const Login = () => {
         <input
           type="text"
           id="username"
+          required
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -49,13 +53,18 @@ const Login = () => {
         <input
           type="password"
           id="password"
+          required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
+      <div className="log">
       <button type="submit">Login</button>
+      <Link to={'/auth/register'} > New User? <ArrowForwardIcon /></Link>
+      </div>
     </form>
   </div>
+    </div>
   )
 }
 

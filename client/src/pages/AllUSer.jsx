@@ -38,6 +38,7 @@ const AllUSer = () => {
 
   return (
     <div className='use'>
+      <h1>All User</h1>
         <table className="table">
   <thead>
     <tr>

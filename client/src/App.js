@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap-grid.min.css'
 import { useGetUserID } from "./hooks/useGetUserId";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Register from './components/Register';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Route path='/auth' element={<Auth />}/>
         <Route path='/create-recipe' element={<CreateRecipe />}/>
         <Route path='/saved-recipes' element={<SavedRecipe />}/>
+        <Route path='/auth/register' element={<Register />}/>
         {user && user.role === "admin" ? (<Route exact path='/admin/users' element={<AllUSer />}/>)
         :(
           <Route element={<NotFound />} />
