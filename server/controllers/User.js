@@ -40,6 +40,29 @@ export const login = async (req, res) => {
     })
 
 }
+//Delete User
+export const deleteUser= async(req,res)=>{
+   try {
+    const user = await UserModel.findById(req.params.id);
+
+    if(!user){
+        return res.status(404).json({
+            success:false,
+            message:"User not found"
+        })
+    }
+
+    await user.deleteOne();
+    res.status(200).json({
+        success:true,
+        message:"User Deleted Successfully!",
+    })
+    
+   } catch (error) {
+    res.status(500).json(error)
+   }
+
+}
 
 //get all user
 export const getAllUser = async(req,res)=>{
@@ -59,4 +82,19 @@ export const getAUser = async(req,res)=>{
    } catch (error) {
     res.json(error)
    }
+}
+//update user by admin
+export const updateUser = async(req,res)=>{
+    const newuser = {
+        role: req.body.role,
+    }
+
+    await UserModel.findByIdAndUpdate(req.params.id, newuser,{
+        new:true,
+        runValidators:true,
+        useFindAndModify:false,
+    })
+    res.status(200).json({
+        success:true
+    })
 }

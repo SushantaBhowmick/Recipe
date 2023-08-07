@@ -4,10 +4,13 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
+import { useAlert } from 'react-alert';
 
 
 const AllUSer = () => {
   const [users, setUsers] = useState([]);
+  const alert = useAlert();
+
 
 
     useEffect(() => {
@@ -22,7 +25,16 @@ const AllUSer = () => {
         };
     
         fetchUser()
-      }, [])
+      }, []);
+
+      const deleteUserper = async(id)=>{
+       try {
+        await axios.delete(`http://localhost:8080/api/v1/user/${id}`);
+        alert.success("User Deleted Successfully!")
+       } catch (error) {
+        alert.error(error)
+       }
+      }
 
   return (
     <div className='use'>
@@ -45,7 +57,10 @@ const AllUSer = () => {
       <td>{item.savedRecipes.length}</td>
       <td>{item.role}</td>
       <td><div className="action">
-            <Button><DeleteIcon/></Button>
+        <Link to={`/admin/user/${item._id}`} > <EditIcon/> </Link>
+            <Button
+              onClick={()=>deleteUserper(item._id)}
+            ><DeleteIcon/></Button>
       </div>
       </td>
     </tr>

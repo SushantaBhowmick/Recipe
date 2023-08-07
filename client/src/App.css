@@ -156,3 +156,22 @@ button{
 button:hover{
   background-color: rgb(178, 54, 33);
 }
+
+.updateUser > form{
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  border: 1px solid black;
+  padding: 30px 20px;
+  margin-top: 20px ;
+}
+.updateUser > form>select{
+  padding: 15px;
+  margin-bottom: 1rem;
+}
+.header{
+  align-items: center;
+  text-align: center;
+  font-family: cursive;
+  padding: 10px;
+}

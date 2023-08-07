@@ -3,14 +3,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from './pages/Home';
 import CreateRecipe from './pages/CreateRecipe';
 import SavedRecipe from './pages/SavedRecipe';
-import NotFound from './pages/NotFound.jsx';
+import NotFound from './pages/NotFound';
 import AllUSer from './pages/AllUSer';
+import UpdateUserRole from './pages/UpdateUserRole';
 import Auth from './pages/Auth';
 import Navbar from './components/Navbar';
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
-import { useGetUserID } from "./hooks/useGetUserId.js";
+import { useGetUserID } from "./hooks/useGetUserId";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+
 
 function App() {
 
@@ -41,7 +43,11 @@ function App() {
         <Route path='/auth' element={<Auth />}/>
         <Route path='/create-recipe' element={<CreateRecipe />}/>
         <Route path='/saved-recipes' element={<SavedRecipe />}/>
-        {user && user.role === "admin" ? (<Route path='/admin/users' element={<AllUSer />}/>)
+        {user && user.role === "admin" ? (<Route exact path='/admin/users' element={<AllUSer />}/>)
+        :(
+          <Route element={<NotFound />} />
+        )}
+        {user && user.role === "admin" ? (<Route exact path='/admin/user/:id' element={<UpdateUserRole />}/>)
         :(
           <Route element={<NotFound />} />
         )}
